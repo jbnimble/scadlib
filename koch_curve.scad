@@ -35,7 +35,7 @@ For more information, please refer to <http://unlicense.org>
  * Created using OpenSCAD version 2015.03-1 
  */
 module draw_koch_curve(a=[0,0], b=[0,0], generation=1, width=1) {
-    points = koch_recurse([a,b],generation);
+    points = koch_curve([a,b],generation);
     for(i=[0:len(points)-1]) { 
         if(i+1<len(points)) {
             hull() {
@@ -51,7 +51,7 @@ module draw_koch_curve(a=[0,0], b=[0,0], generation=1, width=1) {
  * recursively call to create a list of koch points
  * only finally returning the last calculated list 
  */
-function koch_recurse(points, i) = i==0 ? koch_calculate_list(points) : koch_recurse(koch_calculate_list(points), i-1);
+function koch_curve(points, i) = i==0 ? koch_calculate_list(points) : koch_curve(koch_calculate_list(points), i-1);
 
 /**
  * Find 5 koch points _/\_ between the line given by points k1(x1,y1) and k5(x2,y2)
